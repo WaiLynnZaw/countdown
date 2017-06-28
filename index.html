@@ -7,7 +7,7 @@
     <meta name="description" content="Free coming soon template with jQuery countdown">
     <meta name="author" content="http://bootstraptaste.com">
 
-    <title>Time to say good bye, WLZ</title>
+    <title>Yet Another Day</title>
 
     <!-- Bootstrap -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -25,8 +25,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1>Sorry to say...</h1>
-					<h2 class="subtitle">WLZ will leave CDB in</h2>
+					<h1>Yet Another Day</h1>
+					<h2 class="subtitle">Boring times will end in...</h2>
 					<div id="countdown"></div>
 					<!-- <form class="form-inline signup" role="form">
 					  <div class="form-group">
@@ -45,11 +45,8 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-6 col-lg-offset-3">
-						<p class="copyright">&copy; Phyu Ei</p>
-                        <div class="credits">
-                            You were my best critic, honest friend, reliable teammate and dependable colleague. Farewell and keep in touch.
-                            
-                        </div>
+						<p class="copyright">&copy; MonadLab</p>
+                        
 				</div>
 			</div>		
 		</div>
@@ -58,7 +55,23 @@
     <script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/jquery.countdown.min.js"></script>
 	<script type="text/javascript">
-      $('#countdown').countdown('2017/04/07 17:30:00', function(event) {
+      
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //January is 0!
+
+      var yyyy = today.getFullYear();
+      if(dd<10){
+        dd='0'+dd;
+      } 
+      if(mm<10){
+       mm='0'+mm;
+      } 
+      var today = yyyy+'/'+mm+'/'+dd + ' 18:00:00';
+
+      console.log(today);
+      
+      $('#countdown').countdown(today, function(event) {
         $(this).html(event.strftime('%w weeks %d days <br /> %H:%M:%S'));
       });
     </script>
