@@ -67,12 +67,35 @@
       if(mm<10){
        mm='0'+mm;
       } 
-      var today = yyyy+'/'+mm+'/'+dd + ' 18:00:00';
+      var todayTime = yyyy+'/'+mm+'/'+dd + ' 18:00:00';
 
-      console.log(today);
+      var saturdays = [];
+      for (var i = 0; i <= new Date(yyyy, mm-1, 0).getDate(); i++){    
+        var date = new Date(yyyy, mm-1, i);
+        if (date.getDay() == 6){
+          saturdays.push(date.getDate());
+        } 
+      };
+
+      console.log(saturdays);
+
+      var getDaysInMonth = function(month,year) {
+        return new Date(year, month, 0).getDate();
+      };
+
+      var dayCount = 0;
+      for (var j=0; j<=saturdays.length; j++){
+        if(saturdays[j]>dd){
+          dayCount = saturdays[j] - dd;
+          break;
+        } else if(saturdays[j]<dd && j==saturdays.length-1){
+          dayCount = (saturdays[j] + (getDaysInMonth(mm,yyyy)-dd));
+          break;
+        }
+      }
       
-      $('#countdown').countdown(today, function(event) {
-        $(this).html(event.strftime('<br /> %H:%M:%S'));
+      $('#countdown').countdown(todayTime, function(event) {
+        $(this).html(event.strftime('<br /> %H:%M:%S' + '<br /><br /> And '+ (dayCount-1) + ((dayCount-1)<=1 ? ' day' : ' days') + ' left to weekend'));
       });
     </script>
     
