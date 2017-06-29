@@ -67,6 +67,8 @@
       if(mm<10){
        mm='0'+mm;
       } 
+
+
       var todayTime = yyyy+'/'+mm+'/'+dd + ' 18:00:00';
 
       var saturdays = [];
@@ -76,8 +78,6 @@
           saturdays.push(date.getDate());
         } 
       };
-
-      console.log(saturdays);
 
       var getDaysInMonth = function(month,year) {
         return new Date(year, month, 0).getDate();
@@ -93,9 +93,19 @@
           break;
         }
       }
+
+      var weekendInfo = function(day){
+        if(day == 0){
+          return "Yayyy, today is <b>Friday</b>...<br /> TGIF TGIF!";
+        } else if (day == 1){
+          return "1 day left to weekend";
+        } else {
+          return day + " days left to weekend";
+        }
+      }
       
       $('#countdown').countdown(todayTime, function(event) {
-        $(this).html(event.strftime('<br /> %H:%M:%S' + '<br /><br /> And '+ (dayCount-1) + ((dayCount-1)<=1 ? ' day' : ' days') + ' left to weekend'));
+        $(this).html(event.strftime('<br /> %H:%M:%S' + '<h2 class="subtitle"><br /><br />'+ weekendInfo(dayCount-1) + "</h2>"));
       });
     </script>
     
